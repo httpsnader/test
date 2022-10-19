@@ -15,7 +15,9 @@ use Inertia\Inertia;
  */
 
 Route::get('/', function () {
-    return Inertia::render('Home');
+    return Inertia::render('Home', [
+        'time' => now()->toTimeString(),
+    ]);
 });
 
 Route::get('/users', function () {
@@ -25,4 +27,8 @@ Route::get('/users', function () {
 
 Route::get('/settings', function () {
     return Inertia::render('Settings');
+});
+
+Route::post('/logout', function () {
+    dd('Logout');
 });

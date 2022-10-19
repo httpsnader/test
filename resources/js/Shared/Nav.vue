@@ -10,6 +10,9 @@
             <li>
                 <Link href="/settings">Settings</Link>
             </li>
+            <li>
+                <Link href="/logout" method="post" :data="{ foo:'bar' }" as="button">Logout</Link>
+            </li>
         </ul>
     </nav>
 </template>
