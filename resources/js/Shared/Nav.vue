@@ -2,16 +2,13 @@
     <nav>
         <ul>
             <li>
-                <Link href="/">Home</Link>
+                <Link href="/" class="text-blue-500 hover:underline" :class="{'font-bold underline': true}">Home</Link>
             </li>
             <li>
-                <Link href="/users">Users</Link>
+                <Link href="/users" class="text-blue-500 hover:underline" :class="{'font-bold underline': true}">Users</Link>
             </li>
             <li>
-                <Link href="/settings">Settings</Link>
-            </li>
-            <li>
-                <Link href="/logout" method="post" :data="{ foo:'bar' }" as="button">Logout</Link>
+                <Link href="/settings" class="text-blue-500 hover:underline" :class="{'font-bold underline': true}">Settings</Link>
             </li>
         </ul>
     </nav>
@@ -23,4 +20,4 @@ import { Link } from '@inertiajs/inertia-vue3';
 export default {
     components: { Link },
 };
-</script>z
+</script>
