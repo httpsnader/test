@@ -1,13 +1,3 @@
 <template>
-    <h1>Setting</h1>
-
-    <Nav />
+	<h1 class="text-5xl font-bold">Setting</h1>
 </template>
-
-<script>
-import Nav from '../Shared/Nav.vue';
-
-export default {
-    components: { Nav },
-};
-</script>

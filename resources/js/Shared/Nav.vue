@@ -1,23 +1,23 @@
 <template>
-    <nav>
-        <ul>
-            <li>
-                <Link href="/" class="text-blue-500 hover:underline" :class="{'font-bold underline': true}">Home</Link>
-            </li>
-            <li>
-                <Link href="/users" class="text-blue-500 hover:underline" :class="{'font-bold underline': true}">Users</Link>
-            </li>
-            <li>
-                <Link href="/settings" class="text-blue-500 hover:underline" :class="{'font-bold underline': true}">Settings</Link>
-            </li>
-        </ul>
-    </nav>
+	<nav>
+		<ul class="flex space-x-5 justify-center items-center h-full">
+			<li>
+				<NavLink href="/" :active="$page.component == 'Home'">Home</NavLink>
+			</li>
+			<li>
+				<NavLink href="/users" :active="$page.component == 'User'">User</NavLink>
+			</li>
+			<li>
+				<NavLink href="/settings" :active="$page.component == 'Setting'">Setting</NavLink>
+			</li>
+		</ul>
+	</nav>
 </template>
 
 <script>
-import { Link } from '@inertiajs/inertia-vue3';
+import NavLink from "./NavLink.vue";
 
 export default {
-    components: { Link },
+	components: { NavLink },
 };
 </script>
