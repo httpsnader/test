@@ -21,11 +21,10 @@ Route::get('/', function () {
 
 Route::get('users', function () {
     return Inertia::render('User', [
-        'users' => User::all(),
+        'users' => User::paginate(10),
     ]);
 });
 
 Route::get('settings', function () {
     return Inertia::render('Setting');
 });
-
