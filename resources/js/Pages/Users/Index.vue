@@ -15,6 +15,7 @@
                 <tr>
                     <th scope="col" class="p-6">ID</th>
                     <th scope="col" class="p-6">Name</th>
+                    <th scope="col" class="p-6">Email</th>
                     <th scope="col" class="p-6">Action</th>
                 </tr>
             </thead>
@@ -22,6 +23,7 @@
                 <tr v-for="user in users.data" :key="user.id" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <td scope="row" class="p-6">{{ user.id }}</td>
                     <td scope="row" class="p-6">{{ user.name }}</td>
+                    <td scope="row" class="p-6">{{ user.email }}</td>
                     <td scope="row" class="p-6">
                         <Link :href="`users/${user.id}/edit`" class="text-blue-500 hover:text-blue-900">Edit</Link>
                     </td>
@@ -31,7 +33,7 @@
     </div>
 
     <div class="mb-20 flex justify-center">
-        <Pagination :links="users.links" />
+        <Pagination :links="users.meta.links" />
     </div>
 </template>
 
@@ -39,6 +41,7 @@
 import { ref, watch } from "vue";
 import Pagination from "../../Shared/Pagination.vue";
 import { Inertia } from "@inertiajs/inertia";
+import debounce from "lodash/debounce";
 
 let props = defineProps({
     users: Object,
@@ -47,14 +50,19 @@ let props = defineProps({
 
 let search = ref(props.filters.search);
 
-watch(search, (value) => {
-    Inertia.get(
-        "/users",
-        { search: value },
-        {
-            preserveState: true,
-            replace: true,
-        }
-    );
-});
+watch(
+    search,
+    debounce(function (value) {
+        Inertia.get(
+            "/users",
+            {
+                search: value,
+            },
+            {
+                preserveState: true,
+                replace: true,
+            }
+        );
+    }, 500)
+);
 </script>
