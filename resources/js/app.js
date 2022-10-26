@@ -24,7 +24,12 @@ createInertiaApp({
             .component("Head", Head)
             .mount(el);
     },
-    title: title => `${title} - LOGO`,
+    title: (title) => `${title} - LOGO`,
 });
 
-InertiaProgress.init();
+InertiaProgress.init({
+    delay: 250,
+    color: "#29d",
+    includeCSS: true,
+    showSpinner: true,
+});
