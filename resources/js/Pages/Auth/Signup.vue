@@ -1,12 +1,8 @@
 <template>
-    <Head title="Create User" />
+    <Head title="Signup" />
 
-    <div class="flex justify-between mb-10">
-        <h1 class="text-5xl font-bold">Create User</h1>
-        <Link :href="`/users`" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> Users </Link>
-    </div>
-
-    <form @submit.prevent="submit" class="max-w-md mx-auto">
+    <div class="text-3xl font-bold uppercase text-gray-800">Signup</div>
+    <form @submit.prevent="submit" class="w-full my-10">
         <div class="block mb-10">
             <label for="name" class="text-sm w-full block">Name</label>
             <input v-model="form.name" id="name" name="name" type="text" placeholder="Name" class="w-full border mt-3 px-5 py-3 rounded-lg outline-0" />
@@ -23,10 +19,19 @@
             <span v-if="form.errors.password" v-text="form.errors.password" class="text-red-500 mt-3 block capitalize text-xs"></span>
         </div>
         <div class="block">
-            <button type="submit" :disabled="form.processing" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 text-center inline-flex justify-center items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create</button>
+            <button type="submit" :disabled="form.processing" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 text-center inline-flex justify-center items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Signup</button>
         </div>
     </form>
+    <Link :href="`/login`" class="font-bold transition duration-500 ease-in-out text-xs text-blue-400 hover:text-blue-900"> Already Have Account ? , Login Now </Link>
 </template>
+
+<script>
+import Layout from "../../Shared/AuthLayout.vue";
+
+export default {
+    layout: Layout,
+};
+</script>
 
 <script setup>
 import { useForm } from "@inertiajs/inertia-vue3";
@@ -42,6 +47,7 @@ let form = useForm({
 });
 
 let submit = () => {
-    form.post("/users");
+    form.post("/signup");
 };
 </script>
+

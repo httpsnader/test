@@ -6,7 +6,11 @@ module.exports = {
         "./resources/**/*.vue",
     ],
     theme: {
-        extend: {},
+        extend: {
+            backgroundImage: {
+                "auth-bg": "url('/public/assets/authbg.webp')",
+            },
+        },
     },
     plugins: [],
 };

@@ -6,6 +6,7 @@
         "watch": "vite build --watch"
     },
     "devDependencies": {
+        "@types/lodash": "^4.14.186",
         "@vue/compiler-sfc": "^3.2.41",
         "autoprefixer": "^10.4.12",
         "axios": "^0.27",

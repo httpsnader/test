@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
-use App\Http\Resources\PaginationResource;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -44,6 +43,38 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect('/users');
+        return redirect('/users')->with('message', 'Created Successfully');
+    }
+
+    public function show(User $user)
+    {
+        return Inertia::render('Users/Show', [
+            'user' => $user,
+        ]);
+    }
+
+    public function edit(User $user)
+    {
+        return Inertia::render('Users/Edit', [
+            'user' => $user,
+        ]);
+    }
+
+    public function update(User $user, UserRequest $request)
+    {
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password ? Hash::make($request->password) : $user->password,
+        ]);
+
+        return redirect('/users')->with('message', 'Updated Successfully');
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+
+        return redirect('/users')->with('message', 'Deleted Successfully');
     }
 }

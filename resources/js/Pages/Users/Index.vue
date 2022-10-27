@@ -5,7 +5,7 @@
         <h1 class="text-5xl font-bold">User</h1>
         <div class="flex justify-between items-center">
             <input v-model="search" type="search" placeholder="Search ..." class="border px-5 py-3 rounded-lg outline-0 mr-5" />
-            <Link :href="`/users/create`" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> Create </Link>
+            <Link :href="`/users/create`" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm px-5 py-3 inline-flex items-center mr-2"> Create </Link>
         </div>
     </div>
 
@@ -13,10 +13,10 @@
         <table class="w-full text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th scope="col" class="p-6">ID</th>
-                    <th scope="col" class="p-6">Name</th>
-                    <th scope="col" class="p-6">Email</th>
-                    <th scope="col" class="p-6">Action</th>
+                    <th scope="col" class="p-6" width="25%">ID</th>
+                    <th scope="col" class="p-6" width="25%">Name</th>
+                    <th scope="col" class="p-6" width="25%">Email</th>
+                    <th scope="col" class="p-6" width="25%">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,7 +25,9 @@
                     <td scope="row" class="p-6">{{ user.name }}</td>
                     <td scope="row" class="p-6">{{ user.email }}</td>
                     <td scope="row" class="p-6">
-                        <Link :href="`users/${user.id}/edit`" class="text-blue-500 hover:text-blue-900">Edit</Link>
+                        <Link :href="`/users/${user.id}`" class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 rounded-lg text-sm px-5 py-3 inline-flex items-center mr-2"> Show </Link>
+                        <Link :href="`/users/${user.id}/edit`" class="text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-cyan-300 rounded-lg text-sm px-5 py-3 inline-flex items-center mr-2"> Edit </Link>
+                        <Link :href="`/users/${user.id}/destroy`" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-lg text-sm px-5 py-3 inline-flex items-center mr-2"> Delete </Link>
                     </td>
                 </tr>
             </tbody>
@@ -63,6 +65,6 @@ watch(
                 replace: true,
             }
         );
-    }, 500)
+    }, 300)
 );
 </script>
