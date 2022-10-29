@@ -16,8 +16,8 @@ class UserRequest extends FormRequest
     {
         return [
             'name' => ['required'],
-            'email' => ['required', 'email', Rule::unique('users')],
-            'password' => ['required', 'min:8'],
+            'email' => ['required', 'email', Rule::unique('users')->ignore($this->isMethod('PUT') ? $this->user->id : null)],
+            'password' => [$this->isMethod('POST') ? 'required' : 'nullable', 'min:8'],
         ];
     }
 }

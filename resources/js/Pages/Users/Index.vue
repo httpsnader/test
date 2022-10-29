@@ -9,6 +9,10 @@
         </div>
     </div>
 
+    <div v-if="$page.props.flash.message" class="text-green-700 bg-green-100 p-4 mb-4 text-center text-xs font-bold rounded-lg" role="alert">
+        {{ $page.props.flash.message }}
+    </div>
+
     <div class="overflow-x-auto relative shadow-md rounded-lg mb-5">
         <table class="w-full text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
@@ -27,7 +31,7 @@
                     <td scope="row" class="p-6">
                         <Link :href="`/users/${user.id}`" class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 rounded-lg text-sm px-5 py-3 inline-flex items-center mr-2"> Show </Link>
                         <Link :href="`/users/${user.id}/edit`" class="text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-cyan-300 rounded-lg text-sm px-5 py-3 inline-flex items-center mr-2"> Edit </Link>
-                        <Link :href="`/users/${user.id}/destroy`" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-lg text-sm px-5 py-3 inline-flex items-center mr-2"> Delete </Link>
+                        <button type="button" @click="Destroy(user.id)" :disabled="form.processing" class="destroyBtn text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-lg text-sm px-5 py-3 inline-flex items-center mr-2">Delete</button>
                     </td>
                 </tr>
             </tbody>
@@ -44,6 +48,7 @@ import { ref, watch } from "vue";
 import Pagination from "../../Shared/Pagination.vue";
 import { Inertia } from "@inertiajs/inertia";
 import debounce from "lodash/debounce";
+import { useForm } from "@inertiajs/inertia-vue3";
 
 let props = defineProps({
     users: Object,
@@ -67,4 +72,10 @@ watch(
         );
     }, 300)
 );
+
+const form = useForm();
+
+function Destroy(id) {
+    form.delete(`/users/${id}`);
+}
 </script>

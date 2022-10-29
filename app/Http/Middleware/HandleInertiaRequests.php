@@ -2,9 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use Inertia\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -19,6 +20,10 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             'username' => optional(Auth::user())->name,
+            'flash' => [
+                'type' => fn() => $request->session()->get('type'),
+                'message' => fn() => $request->session()->get('message'),
+            ],
         ]);
     }
 }

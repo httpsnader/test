@@ -23,11 +23,11 @@
                 </tr>
                 <tr>
                     <th scope="col" width="30%" class="uppercase bg-gray-200 p-6 border-2 border-b-white">Created At</th>
-                    <td scope="row" width="70%" class="p-6 bg-white border-2 rounded-lg">{{ user.created_at }}</td>
+                    <td scope="row" width="70%" class="p-6 bg-white border-2 rounded-lg">{{ moment(user.created_at).format('LLLL') }}</td>
                 </tr>
                 <tr>
                     <th scope="col" width="30%" class="uppercase bg-gray-200 p-6 border-2">Updated At</th>
-                    <td scope="row" width="70%" class="p-6 bg-white border-2 rounded-lg">{{ user.updated_at }}</td>
+                    <td scope="row" width="70%" class="p-6 bg-white border-2 rounded-lg">{{ moment(user.updated_at).format('LLLL') }}</td>
                 </tr>
             </thead>
         </table>
@@ -35,6 +35,8 @@
 </template>
 
 <script setup>
+import moment from "moment";
+
 defineProps({
     user: Object,
 });

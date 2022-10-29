@@ -43,7 +43,10 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect('/users')->with('message', 'Created Successfully');
+        return redirect('users')->with([
+            'type', 'success',
+            'message', 'Created Successfully',
+        ]);
     }
 
     public function show(User $user)
@@ -68,13 +71,18 @@ class UserController extends Controller
             'password' => $request->password ? Hash::make($request->password) : $user->password,
         ]);
 
-        return redirect('/users')->with('message', 'Updated Successfully');
+        return redirect('users')->with([
+            'type', 'success',
+            'message', 'Updated Successfully',
+        ]);
     }
 
     public function destroy(User $user)
     {
         $user->delete();
-
-        return redirect('/users')->with('message', 'Deleted Successfully');
+        return redirect('users')->with([
+            'type', 'success',
+            'message', 'Deleted Successfully',
+        ]);
     }
 }
